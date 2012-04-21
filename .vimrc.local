@@ -1,17 +1,62 @@
+
 " GUI Settings {
     " GVIM- (here instead of .gvimrc)
     if has('gui_running')
-        set guifont=Anonymous\ Pro\ Regular:h15
+        set guifont=Anonymous\ Pro:h13
         nmap ,t <Esc>:tabnew<CR>
 
         if has('gui_macvim')
-            set transparency=10          " Make the window slightly transparent
+            set transparency=0          " Make the window slightly transparent
         endif
 
     endif
 " }
 
 
-" this is a test
-cabbrev help tab help
+call togglebg#map("<F4>")
+
+
+
+
+
+cabbrev hel tab help
+
+
+
+
+
+
+"** NOTES "
+"set bell off"
+"add copy paste from clipboard thing"
+
+
+
+"clean close function
+"it maps 'fc' and 'fq' in normal mode to optionally save the current buffer then
+"switch to a new buffer before deleting the original. This preserves any splits you have set up.
+
+
+map fc <Esc>:call CleanClose(1)
+
+map fq <Esc>:call CleanClose(0)
+
+
+function! CleanClose(tosave)
+if (a:tosave == 1)
+    w!
+endif
+let todelbufNr = bufnr("%")
+let newbufNr = bufnr("#")
+if ((newbufNr != -1) && (newbufNr != todelbufNr) && buflisted(newbufNr))
+    exe "b".newbufNr
+else
+    bnext
+endif
+
+if (bufnr("%") == todelbufNr)
+    new
+endif
+exe "bd".todelbufNr
+endfunction
 
