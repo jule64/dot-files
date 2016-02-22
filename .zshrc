@@ -19,11 +19,35 @@ function pzdoc(){
 
 
 #vim cheatsheet
-alias vimcheat="open ~/code/docs\ and\ cheat\ sheets/cheat\ sheets/vim-cheatsheet/vim_cheatsheet.md"
+alias vimcheat='open ~/code/docs\ and\ cheat\ sheets/cheat\ sheets/vim-cheatsheet/vim_cheatsheet.md'
 
 
 # DOCKER ALIASES
 alias dkm=docker-machine
 alias dk=docker
 alias dkui='docker run -d -p 9000:9000 --privileged -v /var/run/docker.sock:/var/run/docker.sock dockerui/dockerui; open /Applications/Google\ Chrome.app http://192.168.99.100:9000'
+
+
+
+# utils
+
+alias ezsh='vi ~/.zshrc'
+alias eprod='atom ~/code/shortcuts/README.md'
+
+alias mdhelp='open ~/code/docs\ and\ cheat\ sheets/markdown/markdown\ cheat\ sheet.md'
+
+
+# cd into a project
+function op(){
+
+  case "$1" in
+      dotfiles)
+          cd ~/.dot-files
+          ;;
+      *)
+          ;;
+  esac
+
+}
+
 
