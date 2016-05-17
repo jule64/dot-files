@@ -9,6 +9,7 @@ set softtabstop=4
 set shiftwidth=4
 set expandtab
 set incsearch
+set hlsearch
 set ignorecase
 set smartcase
 set ruler
@@ -17,10 +18,16 @@ set viminfo=%,'50,\"100,:100,n~/.viminfo
 set autoindent
 set backspace=2
 
+:set ignorecase
+:set smartcase  "case-sensitive if search contains an uppercase character
+
+:syntax on    "colour syntax in Perl,HTML,PHP etc
+
+
 " When open a new file remember the cursor position of the last editing
 if has("autocmd")
-        " When editing a file, always jump to the last cursor position
-        autocmd BufReadPost * if line("'\"") | exe "'\"" | endif
+    " When editing a file, always jump to the last cursor position
+    autocmd BufReadPost * if line("'\"") | exe "'\"" | endif
 endif
 
 
@@ -43,7 +50,17 @@ let g:mapleader = ","
 " Fast saving
 nmap <leader>w :w!<cr>
 
+:nmap ; :
 
 
+" visual shifting with repeat
+:vnoremap < <gv
+:vnoremap > >gv
 
+set whichwrap+=<,>,[,]
+set backspace=indent,eol,start
 
+"autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
+
+map j gj
+map k gk
